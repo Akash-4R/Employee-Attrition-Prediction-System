@@ -17,7 +17,7 @@ def load_view():
     avg_numProj = int(df['number_project'].mean())
     print(avg_satisfy, avg_lastEval, avg_numProj)
 
-    left_col, middle_col, right_col = st.columns(3, gap='medium)
+    left_col, middle_col, right_col = st.columns(3, gap='medium')
     with left_col:
         st.subheader("Average Satisfaction Level : ")
         st.subheader(f"{avg_satisfy}")
