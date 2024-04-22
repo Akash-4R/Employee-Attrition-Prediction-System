@@ -33,7 +33,7 @@ def load_view():
 
     # Graph 1
     plt.style.use('ggplot')
-    fig1  = plt.figure(figsize=(3,3), facecolor="black")
+    fig1  = plt.figure(figsize=(4,4), facecolor="black")
     sns.countplot(x='number_project', data=df, hue="left")
     plt.title('Employee Attrition Vs Project Volume', color="white", fontsize=9)
     plt.xlabel("No of Projects", fontdict=font)
@@ -44,7 +44,7 @@ def load_view():
 
     # Graph 2
     plt.style.use('ggplot')
-    fig2 = plt.figure(figsize=(3,3), facecolor="black")
+    fig2 = plt.figure(figsize=(4,4), facecolor="black")
     sns.countplot(x='salary', data=df, hue="left")
     plt.title('Employee Turnover by Salary', color="white", fontsize=9)
     plt.xlabel("Salary", fontdict=font)
