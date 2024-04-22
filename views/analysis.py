@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 st.set_page_config(page_title="Analysis Dashboard", layout="wide")
 def load_view():
-    df = pd.read_csv('../turnover.csv')
+    df = pd.read_csv('turnover.csv')
     # st.dataframe(df)
 
     # MAIN PAGE
