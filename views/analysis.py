@@ -17,7 +17,7 @@ def load_view():
     avg_numProj = int(df['number_project'].mean())
     print(avg_satisfy, avg_lastEval, avg_numProj)
 
-    left_col, middle_col, right_col = st.columns(3, gap='medium')
+    left_col, middle_col, right_col = st.columns(3)
     with left_col:
         st.subheader("Average Satisfaction Level : ")
         st.subheader(f"{avg_satisfy}")
@@ -33,7 +33,7 @@ def load_view():
 
     # Graph 1
     plt.style.use('ggplot')
-    fig1  = plt.figure(figsize=(4,4), facecolor="black")
+    fig1  = plt.figure(figsize=(3,3), facecolor="black")
     sns.countplot(x='number_project', data=df, hue="left")
     plt.title('Employee Attrition Vs Project Volume', color="white", fontsize=9)
     plt.xlabel("No of Projects", fontdict=font)
@@ -44,7 +44,7 @@ def load_view():
 
     # Graph 2
     plt.style.use('ggplot')
-    fig2 = plt.figure(figsize=(4,4), facecolor="black")
+    fig2 = plt.figure(figsize=(3,3), facecolor="black")
     sns.countplot(x='salary', data=df, hue="left")
     plt.title('Employee Turnover by Salary', color="white", fontsize=9)
     plt.xlabel("Salary", fontdict=font)
