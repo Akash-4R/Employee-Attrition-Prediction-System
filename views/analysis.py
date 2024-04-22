@@ -10,7 +10,7 @@ def load_view():
     # st.dataframe(df)
 
     # MAIN PAGE
-    st.title(':bar_chart: Data Analysis')
+    st.title(':bar_chart: Data Visualisation')
     st.markdown("##")
     avg_satisfy = round(df['satisfaction_level'].mean(), 2)
     avg_lastEval = round(df['last_evaluation'].mean(), 2)
@@ -32,8 +32,6 @@ def load_view():
     font = { "color": "white", "size": 8 }
 
     # Graph 1
-    plt.style.use('ggplot')
-    matplotlib.use('agg')
     fig1  = plt.figure(figsize=(3,3), facecolor="black")
     sns.countplot(x='number_project', data=df, hue="left")
     plt.title('Employee Attrition Vs Project Volume', color="white", fontsize=9)
@@ -42,12 +40,9 @@ def load_view():
     plt.xticks(fontsize=6, color="white")
     plt.yticks(fontsize=6, color="white")
     plt.show()
-    plt.savefig("num_vol.png")
     #st.pyplot(fig1, use_container_width=False)
 
     # Graph 2
-    plt.style.use('ggplot')
-    matplotlib.use('agg') 
     fig2 = plt.figure(figsize=(3,3), facecolor="black")
     sns.countplot(x='salary', data=df, hue="left")
     plt.title('Employee Turnover by Salary', color="white", fontsize=9)
@@ -61,8 +56,6 @@ def load_view():
     # sns.set(style="whitegrid")
 
     # Create the boxplot - Graph 3
-    plt.style.use('ggplot')
-    matplotlib.use('agg') 
     fig3 = plt.figure(figsize=(3,3), facecolor="black")
     sns.boxplot(x='left', y='satisfaction_level', data=df, hue='left', palette="Set1")
     # plt.rcParams['figure.figsize'] = [4, 4]
@@ -75,8 +68,6 @@ def load_view():
     plt.show()
 
     # Graph 4
-    plt.style.use('ggplot')
-    matplotlib.use('agg') 
     fig4 = plt.figure(figsize=(3,3), facecolor="black")
     sns.histplot(x='satisfaction_level', data=df, hue="salary")
     plt.title('Children',color="white", fontsize=9)
