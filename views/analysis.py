@@ -39,7 +39,6 @@ def load_view():
     plt.ylabel("Count", fontdict=font)
     plt.xticks(fontsize=6, color="white")
     plt.yticks(fontsize=6, color="white")
-    plt.show()
     #st.pyplot(fig1, use_container_width=False)
 
     # Graph 2
@@ -50,7 +49,6 @@ def load_view():
     plt.ylabel("Count", fontdict=font)
     plt.xticks(fontsize=6, color="white")
     plt.yticks(fontsize=6, color="white")
-    plt.show()
     #st.pyplot(fig2, use_container_width=False)
 
     # sns.set(style="whitegrid")
@@ -65,7 +63,6 @@ def load_view():
     plt.yticks(fontsize=6, color="white")
     plt.title('Satisfaction Level by Left Status',color="white", fontsize=9)
     # st.pyplot(fig3)
-    plt.show()
 
     # Graph 4
     fig4 = plt.figure(figsize=(3,3), facecolor="black")
@@ -76,7 +73,6 @@ def load_view():
     plt.xticks(fontsize=6, color="white")
     plt.yticks(fontsize=6, color="white")
     plt.legend(['low', 'medium', 'high'],title="Salary", fontsize='7', title_fontsize='7')
-    plt.show()
 
     lc, rc = st.columns(2)
     lc.pyplot(fig2, use_container_width=False)
