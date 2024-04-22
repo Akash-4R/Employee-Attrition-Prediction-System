@@ -10,6 +10,7 @@ def load_view():
     <style>
         body {
             width: 100%;
+            margin: 0;
         }
     </style>
     """
