@@ -1,0 +1,8 @@
+streamlit==1.33.0
+pandas @ file:///C:/ci/pandas_1650373458095/work
+matplotlib @ file:///C:/ci/matplotlib-suite_1647423638658/work
+matplotlib-inline @ file:///tmp/build/80754af9/matplotlib-inline_1628242447089/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+pillow==10.2.0
+plotly @ file:///opt/conda/conda-bld/plotly_1646671701182/work
+plotly-express==0.4.1
