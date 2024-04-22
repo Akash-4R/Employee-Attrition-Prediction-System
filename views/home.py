@@ -159,9 +159,9 @@ def load_view():
         load_model = pickle.load(open('views/attrition_model.sav', 'rb'))
         y_pred = load_model.predict(input_df)
         if y_pred == 1:
-            st.write("Employee is expected to leave")
+            st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to leave the company</h2>", unsafe_allow_html=True)
         else:
-            st.write("Safe")
+            st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to stay in the company</h2>", unsafe_allow_html=True)
         st.session_state.clicked = False
 
 
