@@ -58,7 +58,7 @@ def load_view():
     plt.show()
     #st.pyplot(fig2, use_container_width=False)
 
-    sns.set(style="whitegrid")
+    # sns.set(style="whitegrid")
 
     # Create the boxplot - Graph 3
     plt.style.use('ggplot')
