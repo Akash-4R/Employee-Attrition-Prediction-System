@@ -6,7 +6,7 @@ def load_view():
     page_bg_img = """
     <style>
     [data-testid = 'stAppViewContainer'] {
-    background-image: url("https://img.freepik.com/premium-photo/top-view-wood-office-desk-table-flat-lay-workspace_35380-2854.jpg");
+    background-image: url("https://i.pinimg.com/originals/0e/29/f9/0e29f9d0e7f62100d528f74f12c0a7e9.jpg");
     background-size: cover;
     }
 
@@ -14,12 +14,12 @@ def load_view():
     background-color: rgba(0, 0, 0, 0);
     }
 
-    [data-testid = 'stSidebarContent'] {
+    [data-testid = 'tContent'] {
     background-color: #17101E;
     width: 0.25wh;
     }
 
-    [data-testid = 'stSidebarUserContent'] {
+    [data-testid = 'tUserContent'] {
     padding: 3rem 1.5rem;
     color: #F6F3F9;
     }
@@ -102,67 +102,65 @@ def load_view():
     """
 
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    st.sidebar.markdown("# Survey")
+    st.title("Employee Attrition Prediction System")
+    st.write("Employee attrition poses significant challenges to businesses by disrupting operations and increasing recruitment costs. To address this, the Employee Attrition Prediction System leverages data analytics to identify patterns and predict future turnover. This system collects and analyzes employee data, including demographics, performance, and satisfaction, to uncover attrition drivers and forecast at-risk employees. By providing actionable insights, EAMS helps organizations formulate effective retention strategies, ultimately reducing turnover, enhancing employee engagement, and optimizing operational efficiency. The result is a more stable, motivated workforce and cost savings from improved retention")
+    with st.form("Survey"):
+        satisfaction = st.slider("### Employee Satisfaction Level", min_value=0.0, max_value=10.0, value=0.00)
+        evaluation = st.slider("### Last Evaluation of Employer", min_value=0.0, max_value=10.0, value=0.00)
+        projectCount = st.number_input("### Number of Projects", min_value=1, max_value=7, value=1,step=1)
+        averageMonthlyHours = st.slider("### Average Monthly Working Hours", min_value=96, max_value=310, value=96)
+        experience_yrs = st.number_input("### Years of Experience", min_value=2, max_value=10, value=2,step=1)
+        workAccident = st.radio("### Occurence of Work Accidents",["Yes","No"])
+        promotion = st.radio("### Promotion in the last 5 years",["Yes","No"])
 
-    satisfaction = st.sidebar.slider("### Satisfaction Level", min_value=0.0, max_value=1.0, value=0.01)
-    evaluation = st.sidebar.slider("### Last Evaluation", min_value=0.0, max_value=1.0, value=0.01)
-    projectCount = st.sidebar.slider("### Number of Projects", min_value=1, max_value=7, value=1)
-    averageMonthlyHours = st.sidebar.slider("### Average Monthly Working Hours", min_value=96, max_value=310, value=1)
-    experience_yrs = st.sidebar.slider("### Years of Experience", min_value=2, max_value=10, value=1)
-    workAccident = st.sidebar.slider("### Work Accident", min_value=0, max_value=1, value=1)
-    promotion = st.sidebar.slider("### Promotion in the last 5 years", min_value=0, max_value=1, value=1)
+        dept_options = ['Sales',
+                        'Technical',     
+                        'Support',    
+                        'IT',      
+                        'Product Management',
+                        'Marketing',  
+                        'RandD',         
+                        'Accounting',    
+                        'HR',            
+                        'Management'
+                        ]
 
-    dept_options = ['sales',
-                    'technical',     
-                    'support',    
-                    'IT',      
-                    'product_mng',
-                    'marketing',  
-                    'RandD',         
-                    'accounting',    
-                    'hr',            
-                    'management'
-                    ]
+        salary_options = ["Low", "Medium", "High"]
+        selected_dept = st.selectbox("### Departament", dept_options)
+        selected_salary = st.selectbox("### Employee Salary", salary_options)
+        
+        if 'clicked' not in st.session_state:
+            st.session_state.clicked = False
 
-    salary_options = ["low", "medium", "high"]
-    selected_dept = st.sidebar.selectbox("### Departament:", dept_options)
-    selected_salary = st.sidebar.selectbox("### Salary", salary_options)
+        def click_button():
+            st.session_state.clicked = True
 
-    user_input = {
-        'satisfaction_level': satisfaction,
-        'last_evaluation': evaluation,
-        'number_project': projectCount,
-        'average_montly_hours': averageMonthlyHours,
-        'Work_accident': workAccident,
-        'promotion_last_5years': promotion,
-        'salary': selected_salary,
-        'department': selected_dept,
-        'experience_yrs' : experience_yrs
-    }
+        st.form_submit_button('Submit', on_click=click_button)
 
-    # st.sidebar.write(user_input)
-
-    dept_encoding = {'IT': 0, 'RandD': 1, 'accounting': 2, 'hr': 3, 'management': 4, 'marketing': 5, 'product_mng': 6, 'sales': 7, 'support': 8, 'technical': 9}
-    sal_encoding = {'low': 0, 'medium': 1, 'high': 2}
-    if 'clicked' not in st.session_state:
-        st.session_state.clicked = False
-
-    def click_button():
-        st.session_state.clicked = True
-
-    st.sidebar.button('Submit', on_click=click_button)
-
-    if st.session_state.clicked:
-        user_input['department'] = dept_encoding[user_input['department']]
-        user_input['salary'] = sal_encoding[user_input['salary']]
-        input_df = pd.DataFrame(user_input, index = [0])
-        load_model = pickle.load(open('views/attrition_model.sav', 'rb'))
-        y_pred = load_model.predict(input_df)
-        if y_pred == 1:
-            st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to leave the company</h2>", unsafe_allow_html=True)
-        else:
-            st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to stay in the company</h2>", unsafe_allow_html=True)
-        st.session_state.clicked = False
-
-
+        if st.session_state.clicked:
+            user_input = {
+                'satisfaction_level': satisfaction/10,
+                'last_evaluation': evaluation/10,
+                'number_project': projectCount,
+                'average_montly_hours': averageMonthlyHours,
+                'Work_accident': 1 if workAccident=="Yes" else 0,
+                'promotion_last_5years': 1 if promotion=="Yes" else 0,
+                'salary': selected_salary,
+                'department': selected_dept,
+                'experience_yrs' : experience_yrs
+            }
+            dept_encoding = {'IT': 0, 'RandD': 1, 'Accounting': 2, 'HR': 3, 'Management': 4, 'Marketing': 5, 'Product Managment': 6, 'Sales': 7, 'Support': 8, 'Technical': 9}
+            sal_encoding = {'Low': 0, 'Medium': 1, 'High': 2}
+            user_input['department'] = dept_encoding[user_input['department']]
+            user_input['salary'] = sal_encoding[user_input['salary']]
+            input_df = pd.DataFrame(user_input, index = [0])
+            load_model = pickle.load(open('views/attrition_model.sav', 'rb'))
+            y_pred = load_model.predict(input_df)
+            if y_pred == 1:
+                #st.write("Employee is expected to leave")
+                st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to leave the company</h2>", unsafe_allow_html=True)
+            else:
+                #st.write("Safe")
+                st.markdown("<h2 style='text-align: center; color: white;'>Employee is expected to stay in the company</h2>", unsafe_allow_html=True)
+            st.session_state.clicked = False
         
